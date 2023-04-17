@@ -5,7 +5,7 @@
 #include <stdexcept>
 using namespace std;
 
-#include "sources/Fraction.hpp"
+#include "sources/Fraction.cpp"
 
 using namespace ariel;
 
@@ -21,6 +21,8 @@ TEST_CASE("Initialization"){
 TEST_CASE("Operators on Fractions"){
     Fraction a(5,3), b(14,21);
     Fraction c = a+b;
+
+    //operators
     CHECK(c.get_numerator()==7);
     CHECK(c.get_denominator()==3);
     c = a-b;
@@ -32,6 +34,8 @@ TEST_CASE("Operators on Fractions"){
     c = a/b;
     CHECK(c.get_numerator()==5);
     CHECK(c.get_denominator()==2);
+
+    //++ or --
     c++;
     CHECK(c.get_numerator()==7);
     CHECK(c.get_denominator()==2);
@@ -44,6 +48,11 @@ TEST_CASE("Operators on Fractions"){
     --c;
     CHECK(c.get_numerator()==7);
     CHECK(c.get_denominator()==2);//but now c = 5/2.
-    CHECK(c>a == true);
-    
+
+    //boolean
+    CHECK( c>a == true);
+    CHECK( c>=a == true);
+    CHECK( c<b == false);
+    CHECK( c<=b == false);
+
 }

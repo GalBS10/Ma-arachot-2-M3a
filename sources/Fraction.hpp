@@ -1,3 +1,5 @@
+#ifndef FRACTION
+#define FRACTION
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -38,7 +40,8 @@ public:
     friend bool operator>(const Fraction &f1,const double d);
     friend bool operator<=(const Fraction &f1,const Fraction &f2);
     friend bool operator<(const Fraction &f1,const double d);
-    bool Fraction::operator==(Fraction b) const;
+    bool operator==(Fraction b) const;
     
 };
+#endif
 

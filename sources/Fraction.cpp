@@ -1,5 +1,7 @@
 #include "Fraction.hpp"
 
+
+
 //in order to get rid of the errors i must implement these functions
 //I also implemented some easy functions too.
 

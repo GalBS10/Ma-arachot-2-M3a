@@ -28,6 +28,7 @@ public:
     Fraction operator++(int); // postfix ++ operator
     Fraction operator--(int); // postfix -- operator
     bool operator>(Fraction b) const;
+    bool operator<(Fraction b) const;
     Fraction operator+(const double d) const;
     Fraction operator-(const double d) const;
     Fraction operator/(const double d) const;
@@ -37,6 +38,7 @@ public:
     friend bool operator>(const Fraction &f1,const double d);
     friend bool operator<=(const Fraction &f1,const Fraction &f2);
     friend bool operator<(const Fraction &f1,const double d);
+    bool Fraction::operator==(Fraction b) const;
     
 };
 

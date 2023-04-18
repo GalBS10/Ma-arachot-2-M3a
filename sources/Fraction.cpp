@@ -12,8 +12,8 @@ Fraction::Fraction(int numer, int denomin)
             throw std::overflow_error("Divide by zero exception");//found this throw in stackoverflow.
         }
         if(numer < 0 && denomin < 0){// if both negetive then its positive number.
-            numer = -numer;
-            denomin = -denomin;
+            numer = 0-numer;
+            denomin = 0-denomin;
         }
         int _gcd = gcd(numer, denomin);
         numerator = numer / _gcd;

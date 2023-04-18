@@ -18,13 +18,13 @@ TEST_CASE("Initialization")
     CHECK(c.get_numerator() == 3);
     CHECK(c.get_denominator() == 2);
     //minus
-    Fraction d(4,-2);
-    CHECK(d.get_numerator() == 2);
-    CHECK(d.get_denominator() == -1);
+    Fraction d(4,-2);//the minus is allways at the numerator because of the gcd.
+    CHECK(d.get_numerator() == -2);
+    CHECK(d.get_denominator() == 1);
     //both minus
     Fraction e(-5,-10);
-    CHECK(d.get_numerator() == 1);
-    CHECK(d.get_denominator() == 2);
+    CHECK(e.get_numerator() == 1);
+    CHECK(e.get_denominator() == 2);
 }
 
 TEST_CASE("Operators on Fractions")

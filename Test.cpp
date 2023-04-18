@@ -13,6 +13,18 @@ TEST_CASE("Initialization")
     Fraction b = a + 1;
     CHECK(b.get_numerator() == 7);
     CHECK(b.get_denominator() == 3);
+    //minimalization
+    Fraction c(21,14);
+    CHECK(c.get_numerator() == 3);
+    CHECK(c.get_denominator() == 2);
+    //minus
+    Fraction d(4,-2);
+    CHECK(d.get_numerator() == 2);
+    CHECK(d.get_denominator() == -1);
+    //both minus
+    Fraction e(-5,-10);
+    CHECK(d.get_numerator() == 1);
+    CHECK(d.get_denominator() == 2);
 }
 
 TEST_CASE("Operators on Fractions")
@@ -34,24 +46,30 @@ TEST_CASE("Operators on Fractions")
     CHECK(c.get_denominator() == 2);
 
     //++ or --
-    c++;
-    CHECK(c.get_numerator() == 7);
-    CHECK(c.get_denominator() == 2);
-    ++c;
-    CHECK(c.get_numerator() == 7);
-    CHECK(c.get_denominator() == 2); // but now c = 9/2.
-    c--;
-    CHECK(c.get_numerator() == 7);
-    CHECK(c.get_denominator() == 2);
-    --c;
-    CHECK(c.get_numerator() == 7);
-    CHECK(c.get_denominator() == 2); // but now c = 5/2.
+    Fraction d = c++;
+    CHECK(d.get_numerator() == 5);
+    CHECK(d.get_denominator() == 2);
+    d = ++c;
+    CHECK(d.get_numerator() == 9);
+    CHECK(d.get_denominator() == 2); // but now c = 9/2.
+    d = c--;
+    CHECK(d.get_numerator() == 9);
+    CHECK(d.get_denominator() == 2);
+    d = --c;
+    CHECK(d.get_numerator() == 5);
+    CHECK(d.get_denominator() == 2); // but now c = 5/2.
 
     // boolean
     CHECK((c > a) == true);
     CHECK((c >= a) == true);
     CHECK((c < b) == false);
     CHECK((c <= b) == false);
-    Fraction d = c;
-    CHECK((c == d) == true);
+    Fraction e = c;
+    CHECK((c == e) == true);
+}
+
+TEST_CASE ("llegal scenarios"){
+
+
+
 }

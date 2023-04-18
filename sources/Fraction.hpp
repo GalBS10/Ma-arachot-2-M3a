@@ -41,6 +41,8 @@ public:
     friend bool operator<=(const Fraction &fraction1,const Fraction &fraction2);
     friend bool operator<(const Fraction &fraction1, double number);
     bool operator==(Fraction fraction) const;
+    void minimilize();
+    int gcd(int numer,int denom);
     
 };
 #endif

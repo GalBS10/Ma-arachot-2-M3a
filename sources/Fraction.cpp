@@ -39,8 +39,8 @@ int Fraction::get_denominator() const
 // operators only with Fractions
 Fraction Fraction::operator+(Fraction fraction) const
 { // plus
-    int new_num = numerator * fraction.denominator + denominator * fraction.numerator;
-    int new_den = denominator * fraction.denominator;
+    int new_num = numerator * fraction.get_denominator() + denominator * fraction.get_numerator();
+    int new_den = denominator * fraction.get_denominator();
     Fraction answer(new_num, new_den);
     answer.minimilize();
     return answer;
@@ -48,8 +48,8 @@ Fraction Fraction::operator+(Fraction fraction) const
 
 Fraction Fraction::operator-(Fraction fraction) const
 { // minus
-    int new_num = numerator * fraction.denominator - denominator * fraction.numerator;
-    int new_den = denominator * fraction.denominator;
+    int new_num = numerator * fraction.get_denominator() - denominator * fraction.get_numerator();
+    int new_den = denominator * fraction.get_denominator();
     Fraction answer(new_num, new_den);
     answer.minimilize();
     return answer;
@@ -57,8 +57,8 @@ Fraction Fraction::operator-(Fraction fraction) const
 
 Fraction Fraction::operator/(Fraction fraction) const
 { // devision
-    int new_num = numerator * fraction.denominator;
-    int new_den = denominator * fraction.numerator;
+    int new_num = numerator * fraction.get_denominator();
+    int new_den = denominator * fraction.get_numerator();
     Fraction answer(new_num, new_den);
     answer.minimilize();
     return answer;
@@ -66,8 +66,8 @@ Fraction Fraction::operator/(Fraction fraction) const
 
 Fraction Fraction::operator*(Fraction fraction) const
 { // multiply
-    int new_num = numerator * fraction.numerator;
-    int new_den = denominator * fraction.denominator;
+    int new_num = numerator * fraction.get_numerator();
+    int new_den = denominator * fraction.get_denominator();
     Fraction answer(new_num, new_den);
     answer.minimilize();
     return answer;

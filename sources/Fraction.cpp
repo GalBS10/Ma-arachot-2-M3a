@@ -25,6 +25,12 @@ Fraction::Fraction(int numer, int denomin)
     }
 }
 
+Fraction Fraction::convert(float number){
+
+return Fraction(1000*number,1000);
+
+}
+
 // getters
 int Fraction::get_numerator() const
 {
@@ -101,32 +107,37 @@ Fraction Fraction::operator--(int)
 
 // operators with consts and Fractions
 
-Fraction Fraction::operator+(double number) const
+Fraction Fraction::operator+(float number) const
 { // plus
-    Fraction answer(numerator + number * denominator, denominator);
-    answer.minimilize();
-    return answer;
+    // Fraction answer(numerator + number * denominator, denominator);
+    // answer.minimilize();
+    // return answer;
+    return convert(number)+*this;
+
 }
 
-Fraction Fraction::operator-(double number) const
+Fraction Fraction::operator-(float number) const
 { // minus
-    Fraction answer(numerator - number * denominator, denominator);
-    answer.minimilize();
-    return answer;
+    // Fraction answer(numerator - number * denominator, denominator);
+    // answer.minimilize();
+    // return answer;
+    return convert(number)-*this;
 }
 
-Fraction Fraction::operator/(double number) const
+Fraction Fraction::operator/(float number) const
 { // devision
-    Fraction answer(numerator, denominator * number);
-    answer.minimilize();
-    return answer;
+    // Fraction answer(numerator, denominator * number);
+    // answer.minimilize();
+    // return answer;
+    return convert(number)/ *this;
 }
 
-Fraction operator*(double number, const Fraction &fraction)
+Fraction operator*(float number, const Fraction &fraction)
 { // multiply
-    Fraction answer(number * fraction.get_numerator(), fraction.get_denominator());
-    answer.minimilize();
-    return answer;
+    // Fraction answer(number * fraction.get_numerator(), fraction.get_denominator());
+    // answer.minimilize();
+    // return answer;
+    return Fraction::convert(number)*fraction;
 }
 
 std::ostream &operator<<(std::ostream &os, const Fraction &fraction)
@@ -138,16 +149,17 @@ std::ostream &operator<<(std::ostream &os, const Fraction &fraction)
 // boolean
 bool Fraction::operator>(Fraction fraction) const
 { // bigger
-    return (double)numerator / denominator > (double)fraction.numerator / fraction.denominator;
-}
-bool operator>=(const Fraction &fraction1, const Fraction &fraction2)
-{ // bigger or equal to
-    return (double)fraction1.get_numerator() / fraction1.get_denominator() >= (double)fraction2.get_numerator() / fraction2.get_denominator();
+    return (float)numerator / denominator > (float)fraction.get_numerator() / fraction.get_denominator();
 }
 
-bool operator>(const Fraction &fraction1, double number)
+bool operator>(const Fraction &fraction1, float number)
 { // bigger
-    return (double)fraction1.get_numerator() / fraction1.get_denominator() > number;
+    return fraction1>Fraction::convert(number);
+}
+
+bool operator>=(const Fraction &fraction1, const Fraction &fraction2)
+{ // bigger or equal to
+    return (float)fraction1.get_numerator() / fraction1.get_denominator() >= (float)fraction2.get_numerator() / fraction2.get_denominator();
 }
 
 bool operator<=(const Fraction &fraction1, const Fraction &fraction2)
@@ -155,9 +167,9 @@ bool operator<=(const Fraction &fraction1, const Fraction &fraction2)
     return (double)fraction1.get_numerator() / fraction1.get_denominator() <= (double)fraction2.get_numerator() / fraction2.get_denominator();
 }
 
-bool operator<(const Fraction &fraction1, const double number)
+bool operator<(const Fraction &fraction1, const float number)
 { // smaller
-    return (double)fraction1.get_numerator() / fraction1.get_denominator() < number;
+    return (float)fraction1.get_numerator() / fraction1.get_denominator() < number;
 }
 bool Fraction::operator<(Fraction fraction) const
 { // smaller

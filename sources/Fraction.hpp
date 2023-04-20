@@ -23,19 +23,19 @@ public:
     int get_denominator() const;
 
     Fraction operator+(Fraction fraction) const;
-    Fraction operator+(double number) const;
+    Fraction operator+(float number) const;
     // friend Fraction operator+(double number, const Fraction &fraction);//
 
     Fraction operator-(Fraction fraction) const;
-    Fraction operator-(double number) const;
+    Fraction operator-(float number) const;
     //friend Fraction operator-(double number, const Fraction &fraction);//
 
     Fraction operator/(Fraction fraction) const;
-    Fraction operator/(double number) const;
+    Fraction operator/(float number) const;
     //friend Fraction operator/(double number, const Fraction &fraction);//
 
     Fraction operator*(Fraction fraction) const;
-    friend Fraction operator*(double number, const Fraction &fraction);
+    friend Fraction operator*(float number, const Fraction &fraction);
     //friend Fraction operator*(double number, const Fraction &fraction);//
 
     Fraction &operator++();   // prefix++ operator
@@ -44,11 +44,11 @@ public:
     Fraction operator--(int); // postfix -- operator
 
     bool operator>(Fraction fraction) const;
-    friend bool operator>(const Fraction &fraction, double number);
+    friend bool operator>(const Fraction &fraction, float number);
     // friend bool operator>( double number, const Fraction &fraction1);//
 
     bool operator<(Fraction fraction) const;
-    friend bool operator<(const Fraction &fraction, double number);
+    friend bool operator<(const Fraction &fraction, float number);
     // friend bool operator<(double number, const Fraction &fraction1);//
 
     friend bool operator>=( const Fraction &fraction1, const Fraction &fraction2);
@@ -69,5 +69,6 @@ public:
 
     void minimilize();
     int gcd(int numer, int denom);
+    static Fraction convert(float f);
 };
 #endif

@@ -1,4 +1,5 @@
 #include "Fraction.hpp"
+#include <cmath>
 
 // in order to get rid of the errors i must implement these functions
 // I also implemented some easy functions too.
@@ -9,7 +10,7 @@ Fraction::Fraction(int numer, int denomin)
     {
         if (denomin == 0)
         {
-            throw std::overflow_error("Divide by zero exception");//found this throw in stackoverflow.
+            throw std::overflow_error("Division by zero exception");//found this throw in stackoverflow.
         }
         if(numer < 0 && denomin < 0){// if both negetive then its positive number.
             numer = 0-numer;
@@ -27,7 +28,7 @@ Fraction::Fraction(int numer, int denomin)
 
 Fraction Fraction::convert(float number){
 
-return Fraction(1000*number,1000);
+return Fraction(int(1000*number),1000);
 
 }
 
@@ -106,31 +107,27 @@ Fraction Fraction::operator--(int)
 }
 
 // operators with consts and Fractions
-
+// plus
 Fraction Fraction::operator+(float number) const
-{ // plus
-    // Fraction answer(numerator + number * denominator, denominator);
-    // answer.minimilize();
-    // return answer;
+{ 
     return convert(number)+*this;
-
 }
 
 Fraction operator+(float number, const Fraction &fraction){
     return Fraction::convert(number)+fraction;//because its a "friend" function we need to use ::
 }
-
+// minus
 Fraction Fraction::operator-(float number) const
-{ // minus
+{ 
     return convert(number)-*this;
 }
 
 Fraction operator-(double number, const Fraction &fraction){
     return Fraction::convert(number)-fraction;
 }
-
+// devision
 Fraction Fraction::operator/(float number) const
-{ // devision
+{ 
     return convert(number)/ *this;
 }
 
@@ -138,13 +135,14 @@ Fraction operator/(float number, const Fraction &fraction)
 {
     return Fraction::convert(number)/fraction;
 }
-
+// multiply
 Fraction Fraction::operator*(float number) const
-{ // multiply
+{ 
     return Fraction::convert(number)* *this;
 }
 
-Fraction operator*(float number, const Fraction &fraction){
+Fraction operator*(float number, const Fraction &fraction)
+{
     return Fraction::convert(number)*fraction;
 }
 
@@ -188,23 +186,53 @@ bool operator<(float number, const Fraction &fraction1)
 }
 
 // bigger or equal to
-bool operator>=(const Fraction &fraction1, const Fraction &fraction2)
+bool Fraction::operator>=(const Fraction &fraction) const
 { 
-    return (float)fraction1.get_numerator() / fraction1.get_denominator() >= (float)fraction2.get_numerator() / fraction2.get_denominator();
+    return (float)numerator / denominator >= (float)fraction.get_numerator() / fraction.get_denominator();
 }
 
-
-
-
-bool operator<=(const Fraction &fraction1, const Fraction &fraction2)
-{ // smaller or equal to
-    return (double)fraction1.get_numerator() / fraction1.get_denominator() <= (double)fraction2.get_numerator() / fraction2.get_denominator();
+bool Fraction::operator>=(float number) const
+{
+    return *this >= convert(number);
 }
 
+bool operator>=(float number, const Fraction &fraction)
+{
+    return Fraction::convert(number) >= fraction;
+}
+
+// smaller or equal to
+bool Fraction::operator<=(const Fraction &fraction) const
+{ 
+    return (float)numerator / denominator <= (float)fraction.get_numerator() / fraction.get_denominator();
+}
+
+bool Fraction::operator<=(float number) const
+{
+    return *this <= convert(number);
+}
+
+bool operator<=(float number, const Fraction &fraction)
+{
+    return Fraction::convert(number) <= fraction;
+}
+
+// equal
 bool Fraction::operator==(Fraction fraction) const
-{ // equal
+{
     return numerator == fraction.numerator && denominator == fraction.denominator;
 }
+
+bool Fraction::operator==(float number) const
+{
+    return *this == convert(number);
+}
+
+bool operator==(float number, const Fraction &fraction)
+{
+    return Fraction::convert(number) == fraction;
+}
+
 
 //side functions
 void Fraction::minimilize()
@@ -219,7 +247,7 @@ void Fraction::minimilize()
     // else nothing happens
 }
 
-int Fraction::gcd(int numer, int denom)
+int Fraction::gcd(int numer, int denom)//found this code on the internet.
 { // getting the max num that divide both of the numerator and denominator.
     if (denom != 0)
         return gcd(denom, numer % denom);

@@ -45,30 +45,30 @@ public:
 
     bool operator>(Fraction fraction) const;
     friend bool operator>(const Fraction &fraction, float number);
-    friend bool operator>( float number, const Fraction &fraction1);//
+    friend bool operator>( float number, const Fraction &fraction1);
 
     bool operator<(Fraction fraction) const;
     friend bool operator<(const Fraction &fraction, float number);
-    friend bool operator<(float number, const Fraction &fraction1);//
+    friend bool operator<(float number, const Fraction &fraction1);
 
-    bool operator>=( const Fraction fraction);
-    friend bool operator>=(const Fraction &fraction, float number);//
-    friend bool operator>=(double number, const Fraction &fraction);//
+    bool operator>=( const Fraction &fraction) const;
+    bool operator>=(float number) const;
+    friend bool operator>=(float number, const Fraction &fraction);
 
 
-    friend bool operator<=(const Fraction &fraction1, const Fraction &fraction2);
-    // friend bool operator<=(const Fraction &fraction, double number);//
-    // friend bool operator<=(double number, const Fraction &fraction);//
+    bool operator<=(const Fraction &fraction) const;
+    bool operator<=(float number) const;
+    friend float operator<=(double number, const Fraction &fraction);
 
     bool operator==(Fraction fraction) const;
-    // friend bool operator==(const Fraction &fraction, double number);//
-    // friend bool operator==(double number, const Fraction &fraction);//
+    bool operator==(float number) const;
+    friend bool operator==(float number, const Fraction &fraction);
     
     friend std::ostream &operator<<(std::ostream &_ostream, const Fraction &fraction);
     friend std::istream &operator>>(std::istream &_istream, Fraction &fraction);
 
     void minimilize();
     int gcd(int numer, int denom);
-    static Fraction convert(float f);
+    static Fraction convert(float number);
 };
 #endif

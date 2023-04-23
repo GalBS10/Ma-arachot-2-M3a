@@ -27,7 +27,7 @@ TEST_CASE("Initialization")
     CHECK(e.get_denominator() == 2);
 }
 
-TEST_CASE("Operators on Fractions")
+TEST_CASE("Operators on Fractions only")
 {
     Fraction a(5, 3), b(14, 21);
     Fraction c = a + b;
@@ -68,8 +68,24 @@ TEST_CASE("Operators on Fractions")
     CHECK((c == e) == true);
 }
 
+TEST_CASE("Operators on Fraction and consts"){
+
+    Fraction a(21,5), b(14,6);
+
+    CHECK(a + 2 == Fraction(31,5));//in "==" operator Fraction with Fraction.
+    CHECK(3 + b == Fraction(32,6));//same as above.
+    
+    Fraction c(5,3);
+    CHECK((c+2.421 == 4.087666667));
+    
+
+
+
+
+}
+
 TEST_CASE ("llegal scenarios"){
 
-
+// try to initialize with zero in the denomirator
 
 }

@@ -6,11 +6,9 @@
 
 Fraction::Fraction(int numer, int denomin)
 { // constructor
-    try
-    {
         if (denomin == 0)
         {
-            throw std::overflow_error("Division by zero exception");//found this throw in stackoverflow.
+            throw std::invalid_argument("Division by zero exception");//found this throw in stackoverflow.
         }
         if(numer < 0 && denomin < 0){// if both negetive then its positive number.
             numer = 0-numer;
@@ -19,11 +17,6 @@ Fraction::Fraction(int numer, int denomin)
         int _gcd = gcd(numer, denomin);
         numerator = numer / _gcd;
         denominator = denomin / _gcd;
-    }
-    catch (exception &e)
-    {
-        cout << "coulden't initialize Fraction";
-    }
 }
 
 Fraction Fraction::convert(float number){
@@ -220,6 +213,13 @@ bool operator<=(float number, const Fraction &fraction)
 // equal
 bool Fraction::operator==(Fraction fraction) const
 {
+    if(numerator != fraction.numerator){
+        cout << "numerator difference : " << numerator << " != " << fraction.numerator << endl;
+    }
+    if(denominator != fraction.denominator)
+    {
+        cout << "denominator difference : " << denominator << " != " << fraction.numerator << endl;
+    }
     return numerator == fraction.numerator && denominator == fraction.denominator;
 }
 

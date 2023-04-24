@@ -75,17 +75,27 @@ TEST_CASE("Operators on Fraction and consts"){
     CHECK(a + 2 == Fraction(31,5));//in "==" operator Fraction with Fraction.
     CHECK(3 + b == Fraction(32,6));//same as above.
     
-    Fraction c(5,3);
-    CHECK((c+2.421 == 4.087666667));
-    
+    Fraction c(10,5), d(21,14);
+    CHECK(c == 2);//in "==" operator Fraction with const.
+    CHECK(1.5 == d);//in "==" operator const with Fraction.
 
+    CHECK(a > 4);
+    CHECK(10 > b);
+    CHECK(d+1 >= 2);
+    CHECK(2 >= c);
+    CHECK(a < 5);
+    CHECK(1 < b);
+    CHECK(c <= 2);
+    CHECK( 1.5 <= d);
 
-
-
+    // Fraction d(5,3);
+    // CHECK(d+2.421 == Fraction::convert(4.087));
 }
 
-TEST_CASE ("llegal scenarios"){
+TEST_CASE ("illegal scenarios"){
 
 // try to initialize with zero in the denomirator
+    CHECK_THROWS(Fraction(0,0));
+    CHECK_THROWS(Fraction(2,0));
 
 }

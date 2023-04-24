@@ -58,7 +58,7 @@ public:
 
     bool operator<=(const Fraction &fraction) const;
     bool operator<=(float number) const;
-    friend float operator<=(double number, const Fraction &fraction);
+    friend bool operator<=(float number, const Fraction &fraction);
 
     bool operator==(Fraction fraction) const;
     bool operator==(float number) const;

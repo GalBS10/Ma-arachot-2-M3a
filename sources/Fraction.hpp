@@ -22,19 +22,19 @@ public:
     int get_numerator() const;
     int get_denominator() const;
 
-    Fraction operator+(Fraction fraction) const;
+    Fraction operator+(const Fraction& fraction) const;
     Fraction operator+(float number) const;
     friend Fraction operator+(float number, const Fraction &fraction);
 
-    Fraction operator-(Fraction fraction) const;
+    Fraction operator-(const Fraction& fraction) const;
     Fraction operator-(float number) const;
-    friend Fraction operator-(double number, const Fraction &fraction);
+    friend Fraction operator-(float number, const Fraction &fraction);
 
-    Fraction operator/(Fraction fraction) const;
+    Fraction operator/(const Fraction& fraction) const;
     Fraction operator/(float number) const;
     friend Fraction operator/(float number, const Fraction &fraction);
 
-    Fraction operator*(Fraction fraction) const;
+    Fraction operator*(const Fraction& fraction) const;
     Fraction operator*(float number) const;
     friend Fraction operator*(float number, const Fraction &fraction);
 
@@ -43,12 +43,12 @@ public:
     Fraction operator++(int); // postfix ++ operator
     Fraction operator--(int); // postfix -- operator
 
-    bool operator>(Fraction fraction) const;
-    friend bool operator>(const Fraction &fraction, float number);
+    bool operator>(const Fraction& fraction) const;
+    bool operator>(float number) const;
     friend bool operator>( float number, const Fraction &fraction1);
 
-    bool operator<(Fraction fraction) const;
-    friend bool operator<(const Fraction &fraction, float number);
+    bool operator<(const Fraction& fraction) const;
+    bool operator<(float number) const;
     friend bool operator<(float number, const Fraction &fraction1);
 
     bool operator>=( const Fraction &fraction) const;
@@ -60,7 +60,7 @@ public:
     bool operator<=(float number) const;
     friend bool operator<=(float number, const Fraction &fraction);
 
-    bool operator==(Fraction fraction) const;
+    bool operator==(const Fraction &fraction) const;
     bool operator==(float number) const;
     friend bool operator==(float number, const Fraction &fraction);
     

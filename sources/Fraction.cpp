@@ -37,7 +37,7 @@ int Fraction::get_denominator() const
 }
 
 // operators only with Fractions
-Fraction Fraction::operator+(Fraction fraction) const
+Fraction Fraction::operator+(const Fraction &fraction) const
 { // plus
     int new_num = numerator * fraction.get_denominator() + denominator * fraction.get_numerator();
     int new_den = denominator * fraction.get_denominator();
@@ -46,7 +46,7 @@ Fraction Fraction::operator+(Fraction fraction) const
     return answer;
 }
 
-Fraction Fraction::operator-(Fraction fraction) const
+Fraction Fraction::operator-(const Fraction &fraction) const
 { // minus
     int new_num = numerator * fraction.get_denominator() - denominator * fraction.get_numerator();
     int new_den = denominator * fraction.get_denominator();
@@ -55,7 +55,7 @@ Fraction Fraction::operator-(Fraction fraction) const
     return answer;
 }
 
-Fraction Fraction::operator/(Fraction fraction) const
+Fraction Fraction::operator/(const Fraction &fraction) const
 { // devision
     int new_num = numerator * fraction.get_denominator();
     int new_den = denominator * fraction.get_numerator();
@@ -64,7 +64,7 @@ Fraction Fraction::operator/(Fraction fraction) const
     return answer;
 }
 
-Fraction Fraction::operator*(Fraction fraction) const
+Fraction Fraction::operator*(const Fraction &fraction) const
 { // multiply
     int new_num = numerator * fraction.get_numerator();
     int new_den = denominator * fraction.get_denominator();
@@ -115,7 +115,7 @@ Fraction Fraction::operator-(float number) const
     return convert(number)-*this;
 }
 
-Fraction operator-(double number, const Fraction &fraction){
+Fraction operator-(float number, const Fraction &fraction){
     return Fraction::convert(number)-fraction;
 }
 // devision
@@ -148,14 +148,14 @@ std::ostream &operator<<(std::ostream &os, const Fraction &fraction)
 // boolean
 
 // bigger
-bool Fraction::operator>(Fraction fraction) const
+bool Fraction::operator>(const Fraction &fraction) const
 { 
     return (float)numerator / denominator > (float)fraction.get_numerator() / fraction.get_denominator();
 }
 
-bool operator>(const Fraction &fraction1, float number)
+bool Fraction::operator>(float number) const
 {
-    return fraction1>Fraction::convert(number);
+    return *this>Fraction::convert(number);
 }
 
 bool operator>( float number, const Fraction &fraction1)
@@ -164,14 +164,14 @@ bool operator>( float number, const Fraction &fraction1)
 }
 
 // smaller
-bool Fraction::operator<(Fraction fraction) const
+bool Fraction::operator<(const Fraction &fraction) const
 {
     return (float)numerator / denominator < (float)fraction.get_numerator() / fraction.get_denominator();
 }
 
-bool operator<(const Fraction &fraction1, const float number)
+bool Fraction::operator<(float number) const
 { 
-    return fraction1 < Fraction::convert(number);
+    return *this < Fraction::convert(number);
 }
 bool operator<(float number, const Fraction &fraction1)
 {
@@ -211,7 +211,7 @@ bool operator<=(float number, const Fraction &fraction)
 }
 
 // equal
-bool Fraction::operator==(Fraction fraction) const
+bool Fraction::operator==(const Fraction &fraction) const
 {
     if(numerator != fraction.numerator){
         cout << "numerator difference : " << numerator << " != " << fraction.numerator << endl;
